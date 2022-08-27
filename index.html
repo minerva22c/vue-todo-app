@@ -5,18 +5,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue Todo</title>
+    <style>
+        .addBtn {
+            background-color: royalblue;
+            color: white;    
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+          }
+        ul>li::before {
+            color: green;
+            content: '✔'; 
+            left: 0px;
+            position: relative;
+        }
+        .container {
+            width: 200px;
+        }
+        .inner_div {
+            margin: auto;
+            width: 500px;
+        }
+        body {
+            background-color: rgb(240, 252, 252);
+        }
+        input {
+            border: 0;
+            height: 30px;
+            width: 300px;
+            padding-left: 10px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .libox {
+            border: 0;
+            height: 30px;
+            width: 300px;
+            padding-left: 10px;
+            background-color: white;
+            margin: 10px 0px 10px;
+        }
+    </style>
 </head>
 <body>
-    <div id="app">
-        <h1>Todo App</h1>
-        <input type="text" v-model="inputText" v-on:keyup.enter="addItem">
-        <button v-on:click="addItem">add</button>
-        <div>
-            <ul>
-                <li v-for="(item, index) in todoItems">{{ item }}
-                    <button v-on:click="removeItem(item, index)">remove</button>
-                </li>
-            </ul>
+    <div>
+        <div id="app" class="inner_div">
+            <h1>TODO It!</h1>
+            <input type="text" v-model="inputText" v-on:keyup.enter="addItem" placeholder="Type what you have to do">
+            <button v-on:click="addItem" class="addBtn">+</button>
+            <div>
+                <ul>
+                    <li class="libox" v-for="(item, index) in todoItems" >
+                        {{ item }}
+                        <img v-on:click="removeItem(item, index)" alt="삭제" src="images/trash_can.png" style="width: 15px;">
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
